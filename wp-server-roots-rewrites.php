@@ -9,9 +9,9 @@ Author URI: http://twitter.com/leoj3n
 */
 
 $root = $_SERVER['DOCUMENT_ROOT'];
-$path = '/'. ltrim( parse_url( $_SERVER['REQUEST_URI'] )['path'], '/' );
+$path = '/'. ltrim(parse_url($_SERVER['REQUEST_URI'])['path'], '/');
 
-if ( ! file_exists( $root.$path ) ) {
+if (PHP_SAPI == 'cli-server' && !file_exists($root.$path)) {
   $roots_new_non_wp_rules = array(
     '(/assets/(.*))'  => '/wp-content/themes/roots/assets/$1',
     '(/plugins/(.*))' => '/wp-content/plugins/$1'
